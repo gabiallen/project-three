@@ -5,3 +5,49 @@ video {
   width: 100%;
   height: auto;
 }
+
+body {
+  background-image: url(../Images/map.svg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  max-height: 1vh;
+  overflow: hidden;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: repeat(5, 12.5vw) 37.5;
+  grid-template-rows: repeat(8, 12.5vh);
+}
+
+#oldwell {
+  max-height: 25vh;
+  grid-column: 1;
+  grid-row: 1;
+  grid-column-end: 3;
+  margin-top: 4rem;
+  padding-left: 2rem;
+}
+
+#belltower {
+  max-height: 45vh;
+  grid-column: 3;
+  grid-column-end: 5;
+  grid-row: 2;
+}
+
+#watertower {
+  max-height: 40vh;
+  grid-column: 5;
+  grid-column-end: 7;
+  grid-row-start: 4;
+}
+
+#deandome {
+  max-height: 22vh;
+  grid-column: 7;
+  grid-column-end: 9;
+  grid-row: 6;
+  margin-bottom: 2rem;
+  padding-right: 4rem;
+}
