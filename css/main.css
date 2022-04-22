@@ -12,42 +12,68 @@ body {
   background-size: cover;
   max-height: 1vh;
   overflow: hidden;
+  padding: 5vh 5vw 5vh 5vw;
 }
 
 .container {
   display: grid;
-  grid-template-columns: repeat(5, 12.5vw) 37.5;
-  grid-template-rows: repeat(8, 12.5vh);
+  grid-template-columns: repeat(8, 11.25vw);
+  grid-template-rows: repeat(8, 11.25vh);
 }
 
 #oldwell {
-  max-height: 25vh;
+  max-height: 22.5vh;
+  max-width: 22.5vw;
   grid-column: 1;
   grid-row: 1;
   grid-column-end: 3;
-  margin-top: 4rem;
-  padding-left: 2rem;
 }
 
 #belltower {
   max-height: 45vh;
+  max-width: 11.25vw;
   grid-column: 3;
-  grid-column-end: 5;
+  grid-column-end: 4;
   grid-row: 2;
 }
 
 #watertower {
-  max-height: 40vh;
+  max-height: 33.75vh;
+  max-width: 14vw;
   grid-column: 5;
   grid-column-end: 7;
-  grid-row-start: 4;
+  grid-row-start: 5;
 }
 
 #deandome {
-  max-height: 22vh;
+  max-height: 22.5vh;
+  max-width: 22.5vw;
   grid-column: 7;
   grid-column-end: 9;
-  grid-row: 6;
-  margin-bottom: 2rem;
-  padding-right: 4rem;
+  grid-row: 7;
+}
+
+.bubblefont {
+  font-family: bubblegum-pop-vanilla, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  color: white;
+}
+
+h1 {
+  text-align: center;
+  font-size: 5rem;
+  text-shadow: 0.4rem 0.4rem #59a8d9;
+  line-height: 0.75;
+}
+
+.bigunc {
+  font-size: 11rem;
+}
+
+header {
+  grid-column-start: 5;
+  grid-column-end: 9;
+  grid-row-start: 2;
+  grid-row-end: 4;
 }
