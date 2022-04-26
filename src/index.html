@@ -13,12 +13,12 @@
       href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,600;1,400&display=swap"
       rel="stylesheet"
     />
+    <script src="https://rawgit.com/web-animations/web-animations-js/master/web-animations.min.js"></script>
     <script src="./js/main.js" defer></script>
-    <script src="web-animations.min.js"></script>
     <title>UNC Interactive Map</title>
   </head>
   <body>
-    <div class="wrapper">
+    <div class="wrapper scene -gallery">
       <div class="container">
         <img
           src="./Images/old-well.svg"
@@ -64,9 +64,18 @@
           </h2>
         </address>
       </div>
-      <article class="detail" id="oldwell-card">
-        <img id="oldwell-2" src="./Images/old-well.svg" alt="The Old Well" />
-      </article>
+      <div class="scene -detail">
+        <article class="detail" id="oldwell-card">
+          <img
+            id="oldwell-2"
+            src="./Images/water-tower.svg"
+            alt="The Old Well"
+          />
+        </article>
+      </div>
     </div>
+    <script>
+      document.querySelectorAll(".item");
+    </script>
   </body>
 </html>

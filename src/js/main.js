@@ -1,24 +1,23 @@
 // Get the elements you need to work with
-const items = document.querySelectorAll(".item");
-const detailItem = document.querySelector(".detail");
+var items = document.querySelectorAll(".item");
+var detailItem = document.querySelector(".detail");
+var detailScene = document.querySelector(".scene.-detail");
 
 detailScene.style.display = "none";
 
 // Define the action
 items.forEach((item) => {
   item.addEventListener("click", () => {
-    const itemImage = item.querySelector("img");
+    var itemImage = item.querySelector("img");
+
+    detailItem.setAttribute("data-image", item.getAttribute("data-key"));
 
     detailItem
-      .querySelector("img")
-      .setAttribute("data-image", itemImage.getAttribute("data-key"));
-
-    detailItem
-      .querySelector("img")
+      .querySelector("img"
       .setAttribute("src", itemImage.getAttribute("src"));
 
     let firstRect = itemImage.getBoundingClientRect();
-    let lastRect = detainItem.getBoundingClientRect();
+    let lastRect = detailItem.getBoundingClientRect();
 
     detailItem.animate(
       [
