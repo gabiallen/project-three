@@ -1,48 +1,43 @@
 // Get the elements you need to work with
-var items = document.querySelectorAll(`.item`);
-var detailItem = document.querySelector(".detail");
-var detailScene = document.querySelector(".scene.-detail");
+const item = document.querySelectorAll(`.item`);
+const detailItem = document.querySelector(".detail");
+const detailScene = document.querySelector(".scene.-detail");
 
--detailItem.style.display = `none`;
+// Hide detail view
+detailItem.style.display = `none`;
 
-// Define the action
-items.forEach((item) => {
-  item.addEventListener(`click`, () => {
-    detailItem.setAttribute("data-image", item.getAttribute("data-key"));
+// Detail view animation components
+const firstRect = item.getBoundingClientRect();
+const lastRect = detailItem.getBoundingClientRect();
 
-    detailItem
-      .querySelector("img")
-      .setAttribute("src", item.getAttribute("src"));
-
-    let firstRect = item.getBoundingClientRect();
-    let lastRect = detailItem.getBoundingClientRect();
-
-    detailItem.animate(
-      [
-        {
-          transform: `
-          translateX(${firstRect.left - lastRect.left}px)
-          translateY(${firstRect.top - lastRect.top}px)
-          scale(${firstRect.width / lastRect.width})
-          `,
-        },
-        {
-          transform: `
-          translateX(0)
-          translateY(0)
-          scale(1)
-          `,
-        },
-      ],
+item.forEach((item) => {
+  item.addEventListener("click", () => {
+    const detailAnimate = [
       {
-        duration: 600,
-        easing: "cubic-bezier(0.2, 0, 0.2, 1)",
-      }
-    );
+        transform: `
+        translateX(${firstRect.left - lastRect.left}px)
+        translateY(${firstRect.top - lastRect.top}px)
+        scale(${firstRect.width / lastRect.width})
+      `,
+      },
+      {
+        transform: `
+        translateX(0)
+        translateY(0)
+        scale(1)
+        `,
+      },
+    ];
+
+    const detailTiming = {
+      duration: 600,
+      easing: "cubic-bezier(0.2, 0, 0.2, 1)",
+    };
+
+    detailItem.animate(detailAnimate, detailTiming);
   });
 });
 
-// Wire it up
 detailItem.addEventListener("click", () => {
   const item = document.querySelector(
     `[data-key="${detailItem.getAttribute("data-image")}"]`
@@ -54,28 +49,29 @@ detailItem.addEventListener("click", () => {
   detailScene.style.display = "none";
   item.styleopacity = 1;
 
-  item.animate(
-    [
-      {
-        zIndex: 2,
-        transform: `
-          translateX(${detailItemRect.left - itemRect.left}px)
-          translateY(${(detailItemRect.top - itemRect, top)}px)
-          scale(${detailItemRect.width / itemRect.width})
-          `,
-      },
-      {
-        zIndex: 2,
-        transform: `
-            translateX(0)
-            translateY(0)
-            scale(1)
-            `,
-      },
-    ],
+  const itemAnimate = [
     {
-      duration: 600,
-      easing: "cubic-bezier(0.2, 0, 0.2, 1)",
-    }
-  );
+      zIndex: 2,
+      transform: `
+        translateX(${detailItemRect.left - itemRect.left}px)
+        translateY(${(detailItemRect.top - itemRect, top)}px)
+        scale(${detailItemRect.width / itemRect.width})
+        `,
+    },
+    {
+      zIndex: 2,
+      transform: `
+          translateX(0)
+          translateY(0)
+          scale(1)
+          `,
+    },
+  ];
+
+  const itemTiming = {
+    duration: 600,
+    easing: "cubic-bezier(0.2, 0, 0.2, 1)",
+  };
+
+  item.animate(itemAnimate, itemTiming);
 });
