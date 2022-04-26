@@ -1,25 +1,23 @@
 // Get the elements you need to work with
-var items = document.querySelectorAll(".item");
+var items = document.querySelectorAll(`.item`);
 var detailItem = document.querySelector(".detail");
 var detailScene = document.querySelector(".scene.-detail");
 
-detailScene.style.display = "none";
+detailItems.style.display = `none`;
 
 // Define the action
 items.forEach((item) => {
-  item.addEventListener("click", () => {
-    var itemImage = item.querySelector("img");
+  item.addEventListener(`click`, () => {
+    detailItems.setAttribute("data-image", item.getAttribute("data-key"));
 
-    detailItem.setAttribute("data-image", item.getAttribute("data-key"));
+    detailItems
+      .querySelector("img")
+      .setAttribute("src", item.getAttribute("src"));
 
-    detailItem
-      .querySelector("img"
-      .setAttribute("src", itemImage.getAttribute("src"));
+    let firstRect = item.getBoundingClientRect();
+    let lastRect = detailItems.getBoundingClientRect();
 
-    let firstRect = itemImage.getBoundingClientRect();
-    let lastRect = detailItem.getBoundingClientRect();
-
-    detailItem.animate(
+    detailItems.animate(
       [
         {
           transform: `
@@ -38,32 +36,32 @@ items.forEach((item) => {
       ],
       {
         duration: 600,
-        easing: "cubic-bezier(0,2, 0, 0.2, 1)",
+        easing: "cubic-bezier(0.2, 0, 0.2, 1)",
       }
     );
   });
 });
 
 // Wire it up
-detailItem.addEventListener("click", () => {
-  const itemImage = document.querySelector(
-    `[data-key="${detailItem.getAttribute("data-image")}"]`
+detailItems.addEventListener("click", () => {
+  const item = document.querySelector(
+    `[data-key="${detailItems.getAttribute("data-image")}"]`
   );
 
-  let itemImageRect = itemImage.getBoundingClientRect();
-  let detailItemRect = detailItem.getBoundingClientRect();
+  let itemRect = item.getBoundingClientRect();
+  let detailItemRect = detailItems.getBoundingClientRect();
 
   detailScene.style.display = "none";
-  itemImage.styleopacity = 1;
+  item.styleopacity = 1;
 
-  itemImage.animate(
+  item.animate(
     [
       {
         zIndex: 2,
         transform: `
-          translateX(${detailItemRect.left - itemImageRect.left}px)
-          translateY(${(detailItemRect.top - itemImageRect, top)}px)
-          scale(${detailItemRect.width / itemImageRect.width})
+          translateX(${detailItemRect.left - itemRect.left}px)
+          translateY(${(detailItemRect.top - itemRect, top)}px)
+          scale(${detailItemRect.width / itemRect.width})
           `,
       },
       {

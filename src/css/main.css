@@ -97,11 +97,14 @@ address {
   min-height: 28rem;
 }
 
+.-detail {
+}
+
 article {
   display: flex;
 }
 
-#oldwell-card {
+.detail {
   z-index: 2;
   position: absolute;
   top: 2rem;
