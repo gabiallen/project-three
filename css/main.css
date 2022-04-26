@@ -126,17 +126,6 @@ address.address {
   top: 0;
   left: 0;
   padding: 2rem;
-
-  @keyframes identifier {
-  }
-  @keyframes slide-down {
-    from {
-      transform: translateY(-100%);
-    }
-    to {
-      transform: translateY(0);
-    }
-  }
 }
 
 @media (min-width: 1000px) {
