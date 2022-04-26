@@ -3,21 +3,21 @@ var items = document.querySelectorAll(`.item`);
 var detailItem = document.querySelector(".detail");
 var detailScene = document.querySelector(".scene.-detail");
 
-detailItems.style.display = `none`;
+-detailItem.style.display = `none`;
 
 // Define the action
 items.forEach((item) => {
   item.addEventListener(`click`, () => {
-    detailItems.setAttribute("data-image", item.getAttribute("data-key"));
+    detailItem.setAttribute("data-image", item.getAttribute("data-key"));
 
-    detailItems
+    detailItem
       .querySelector("img")
       .setAttribute("src", item.getAttribute("src"));
 
     let firstRect = item.getBoundingClientRect();
-    let lastRect = detailItems.getBoundingClientRect();
+    let lastRect = detailItem.getBoundingClientRect();
 
-    detailItems.animate(
+    detailItem.animate(
       [
         {
           transform: `
@@ -43,13 +43,13 @@ items.forEach((item) => {
 });
 
 // Wire it up
-detailItems.addEventListener("click", () => {
+detailItem.addEventListener("click", () => {
   const item = document.querySelector(
-    `[data-key="${detailItems.getAttribute("data-image")}"]`
+    `[data-key="${detailItem.getAttribute("data-image")}"]`
   );
 
   let itemRect = item.getBoundingClientRect();
-  let detailItemRect = detailItems.getBoundingClientRect();
+  let detailItemRect = detailItem.getBoundingClientRect();
 
   detailScene.style.display = "none";
   item.styleopacity = 1;
