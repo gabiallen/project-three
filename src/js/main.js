@@ -1,43 +1,58 @@
 // Get the elements you need to work with
-const item = document.querySelectorAll(`.item`);
+const item = document.querySelector(".item");
 const detailItem = document.querySelector(".detail");
 const detailScene = document.querySelector(".scene.-detail");
 
 // Hide detail view
-detailItem.style.display = `none`;
+detailScene.style.display = `none`;
 
-// Detail view animation components
 const firstRect = item.getBoundingClientRect();
 const lastRect = detailItem.getBoundingClientRect();
 
-item.forEach((item) => {
-  item.addEventListener("click", () => {
-    const detailAnimate = [
-      {
-        transform: `
-        translateX(${firstRect.left - lastRect.left}px)
-        translateY(${firstRect.top - lastRect.top}px)
-        scale(${firstRect.width / lastRect.width})
-      `,
-      },
-      {
-        transform: `
-        translateX(0)
-        translateY(0)
-        scale(1)
+// Detail view animation components
+function handleTransition() {
+  document.documentTransition
+    .prepare({
+      rootTransition: "reveal-left",
+      duration: 300,
+      sharedElements: [e1, e2, e3],
+    })
+    .then(() => {
+      doCustomThings();
+      document.documentTransition
+        .start({ sharedElements: [newE1, newE2, newE3] })
+        .then(() => console.log("transition finished"));
+    });
+}
+
+function mainTransistion() {
+  const detailAnimate = [
+    {
+      transform: `
+          translateX(${firstRect.left - lastRect.left}px)
+          translateY(${firstRect.top - lastRect.top}px)
+          scale(${firstRect.width / lastRect.width})
         `,
-      },
-    ];
+    },
+    {
+      transform: `
+          translateX(0)
+          translateY(0)
+          scale(1)
+          `,
+    },
+  ];
 
-    const detailTiming = {
-      duration: 600,
-      easing: "cubic-bezier(0.2, 0, 0.2, 1)",
-    };
+  const detailTiming = {
+    duration: 600,
+    easing: "cubic-bezier(0.2, 0, 0.2, 1)",
+  };
+  detailItem.animate(detailAnimate, detailTiming);
+}
 
-    detailItem.animate(detailAnimate, detailTiming);
-  });
-});
+item.addEventListener("click", mainTransistion);
 
+// reverse
 detailItem.addEventListener("click", () => {
   const item = document.querySelector(
     `[data-key="${detailItem.getAttribute("data-image")}"]`
