@@ -25,6 +25,8 @@ body {
 
 .item {
   transform-origin: top left;
+  width: 22.5vw;
+  height: 22.5vh;
 }
 
 .wrapper {
@@ -108,7 +110,7 @@ address.title {
 
 #oldwell-2 {
   max-height: 30rem;
-  width: 30%;
+  width: 10rem;
 }
 
 article {
