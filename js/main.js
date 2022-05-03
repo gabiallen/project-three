@@ -53,7 +53,7 @@ item.addEventListener("click", mainTransistion);
 
 // Reverse
 detailItem.addEventListener("click", () => {
-  const item = document.querySelector(
+  const itemImage = document.querySelector(
     `[data-key="${detailItem.getAttribute("data-image")}"]`
   );
 
@@ -61,31 +61,30 @@ detailItem.addEventListener("click", () => {
   let detailItemRect = detailItem.getBoundingClientRect();
 
   detailScene.style.display = "none";
-  item.styleopacity = 1;
+  itemImage.style.opacity = 1;
 
-  const itemAnimate = [
-    {
-      zIndex: 2,
-      transform: `
+  itemImage.animate(
+    [
+      {
+        zIndex: 2,
+        transform: `
         translateX(${detailItemRect.left - itemImageRect.left}px)
         translateY(${(detailItemRect.top - itemImageRect, top)}px)
         scale(${detailItemRect.width / itemImageRect.width})
         `,
-    },
-    {
-      zIndex: 2,
-      transform: `
+      },
+      {
+        zIndex: 2,
+        transform: `
           translateX(0)
           translateY(0)
           scale(1)
           `,
-    },
-  ];
-
-  const itemTiming = {
-    duration: 600,
-    easing: "cubic-bezier(0.2, 0, 0.2, 1)",
-  };
-
-  item.animate(itemAnimate, itemTiming);
+      },
+    ],
+    {
+      duration: 600,
+      easing: "cubic-bezier(0.2, 0, 0.2, 1)",
+    }
+  );
 });
