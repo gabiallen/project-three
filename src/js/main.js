@@ -6,26 +6,23 @@ const detailScene = document.querySelector(".scene.-detail");
 // Hide detail view
 detailScene.style.display = `none`;
 
+// Create clickable area and define rect
 const firstRect = item.getBoundingClientRect();
 const lastRect = detailItem.getBoundingClientRect();
 
-// Detail view animation components
-function handleTransition() {
-  document.documentTransition
-    .prepare({
-      rootTransition: "reveal-left",
-      duration: 300,
-      sharedElements: [e1, e2, e3],
-    })
-    .then(() => {
-      doCustomThings();
-      document.documentTransition
-        .start({ sharedElements: [newE1, newE2, newE3] })
-        .then(() => console.log("transition finished"));
-    });
-}
-
+// Define first transition
 function mainTransistion() {
+  const itemImage = item.querySelector("img");
+
+  detailItem.setAttribute("data-image", item.getAttribute("data-key"));
+
+  detailItem
+    .querySelector("img")
+    .setAttribute("src", itemImage.getAttribute("src"));
+
+  detailScene.style.display = `block`;
+  item.style.opacity = 0;
+
   const detailAnimate = [
     {
       transform: `
@@ -50,9 +47,10 @@ function mainTransistion() {
   detailItem.animate(detailAnimate, detailTiming);
 }
 
+// First transistion wired up
 item.addEventListener("click", mainTransistion);
 
-// reverse
+// Reverse
 detailItem.addEventListener("click", () => {
   const item = document.querySelector(
     `[data-key="${detailItem.getAttribute("data-image")}"]`
