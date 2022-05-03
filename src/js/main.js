@@ -7,8 +7,6 @@ const detailScene = document.querySelector(".scene.-detail");
 detailScene.style.display = `none`;
 
 // Create clickable area and define rect
-const firstRect = item.getBoundingClientRect();
-const lastRect = detailItem.getBoundingClientRect();
 
 // Define first transition
 function mainTransistion() {
@@ -22,6 +20,9 @@ function mainTransistion() {
 
   detailScene.style.display = `block`;
   item.style.opacity = 0;
+
+  let firstRect = item.getBoundingClientRect();
+  let lastRect = detailItem.getBoundingClientRect();
 
   const detailAnimate = [
     {
@@ -56,7 +57,7 @@ detailItem.addEventListener("click", () => {
     `[data-key="${detailItem.getAttribute("data-image")}"]`
   );
 
-  let itemRect = item.getBoundingClientRect();
+  let itemImageRect = item.getBoundingClientRect();
   let detailItemRect = detailItem.getBoundingClientRect();
 
   detailScene.style.display = "none";
@@ -66,9 +67,9 @@ detailItem.addEventListener("click", () => {
     {
       zIndex: 2,
       transform: `
-        translateX(${detailItemRect.left - itemRect.left}px)
-        translateY(${(detailItemRect.top - itemRect, top)}px)
-        scale(${detailItemRect.width / itemRect.width})
+        translateX(${detailItemRect.left - itemImageRect.left}px)
+        translateY(${(detailItemRect.top - itemImageRect, top)}px)
+        scale(${detailItemRect.width / itemImageRect.width})
         `,
     },
     {
